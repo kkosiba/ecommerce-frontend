@@ -1,0 +1,12 @@
+{
+    "python.pythonPath": "backend/env/bin/python",
+    "python.linting.pep8Args": ["--ignore=E303"],
+    "python.autoComplete.addBrackets": true,
+
+    "emmet.includeLanguages": {
+        "javascript": "javascriptreact"
+      },
+    "emmet.triggerExpansionOnTab": true,
+    "editor.scrollBeyondLastLine": false,
+    "editor.smoothScrolling": true
+}
