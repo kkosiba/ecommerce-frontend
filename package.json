@@ -23,16 +23,13 @@
     "reactstrap": "^7.1.0",
     "redux": "^4.0.1",
     "redux-form": "^8.1.0",
-    "redux-thunk": "^2.3.0",
-    "serve": "^10.1.2"
+    "redux-thunk": "^2.3.0"
   },
   "scripts": {
-    "dev": "react-scripts start",
-    "start": "serve -s build",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "heroku-postbuild": "npm run build"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": "react-app"
