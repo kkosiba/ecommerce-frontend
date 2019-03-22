@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Router, Switch, Route } from "react-router-dom";
-import { LastLocationProvider } from "react-router-last-location";
+// import { LastLocationProvider } from "react-router-last-location";
 
 // custom history to enable users redirecting from outside of components
 import { history } from "./history";
@@ -36,6 +36,8 @@ import Register from "./components/Authentication/Register";
 // import Profile from "./components/Profiles/Profile";
 
 import { Container } from "reactstrap";
+
+import { Elements, StripeProvider } from "react-stripe-elements";
 
 // FontAwesome
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -109,8 +111,9 @@ class App extends Component {
 
   render() {
     return (
-      <Router history={history}>
-        <LastLocationProvider>
+      <StripeProvider apiKey="pk_test_67GPkLu3pZ7ox2x91a9W4z4A001eANPQFQ">
+        <Router history={history}>
+          {/* <LastLocationProvider> */}
           <ScrollToTop>
             <Navbar />
             <Container className="content my-4">
@@ -124,7 +127,9 @@ class App extends Component {
                 <Route exact path="/product/:slug" component={ProductDetails} />
                 <Route exact path="/search/:query" component={SearchResults} />
                 <Route exact path="/cart" component={Cart} />
-                <PrivateRoute exact path="/checkout" component={Checkout} />
+                <Elements>
+                  <PrivateRoute exact path="/checkout" component={Checkout} />
+                </Elements>
                 <Route exact path="/about" component={About} />
                 <Route exact component={Default} />
               </Switch>
@@ -132,15 +137,16 @@ class App extends Component {
 
             <Footer />
           </ScrollToTop>
-        </LastLocationProvider>
-      </Router>
+          {/* </LastLocationProvider> */}
+        </Router>
+      </StripeProvider>
     );
   }
 }
 
 App.propTypes = {
   onTryAutoSignup: PropTypes.func
-}
+};
 
 export default connect(
   null,
