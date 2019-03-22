@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Field, FormSection, reduxForm } from "redux-form";
-import validate from "../Utilities/Validate";
 import RenderField from "./RenderField";
 import { Link } from "react-router-dom";
 import { Form, FormGroup, Button, Row } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { required, phoneNumber, postcode } from "./Validate";
 
 class Address extends Component {
   render() {
@@ -25,6 +25,7 @@ class Address extends Component {
                   type="text"
                   component={RenderField}
                   label="First Name"
+                  validate={[required, ]}
                 />
               </FormGroup>
               <FormGroup className="col-md-6">
@@ -33,6 +34,7 @@ class Address extends Component {
                   type="text"
                   component={RenderField}
                   label="Last Name"
+                  validate={[required, ]}
                 />
               </FormGroup>
               <FormGroup className="col-md-6">
@@ -41,6 +43,7 @@ class Address extends Component {
                   type="text"
                   component={RenderField}
                   label="City"
+                  validate={[required, ]}
                 />
               </FormGroup>
               <FormGroup className="col-md-6">
@@ -49,6 +52,7 @@ class Address extends Component {
                   type="text"
                   component={RenderField}
                   label="Street"
+                  validate={[required, ]}
                 />
               </FormGroup>
               <FormGroup className="col-md-6">
@@ -57,6 +61,7 @@ class Address extends Component {
                   type="text"
                   component={RenderField}
                   label="Postcode"
+                  validate={[required, postcode]}
                 />
               </FormGroup>
               <FormGroup className="col-md-6">
@@ -65,6 +70,7 @@ class Address extends Component {
                   type="text"
                   component={RenderField}
                   label="Phone Number"
+                  validate={[required, phoneNumber]}
                 />
               </FormGroup>
             </Row>
@@ -98,5 +104,4 @@ export default reduxForm({
   form: "checkout",
   destroyOnUnmount: false,
   forceUnregisterOnUnmount: true, // unregister fields on unmount
-  validate
 })(Address);
