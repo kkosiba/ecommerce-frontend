@@ -20,6 +20,8 @@
     "react-router-dom": "^4.4.0",
     "react-router-last-location": "^2.0.0-beta.1",
     "react-scripts": "^2.1.8",
+    "react-stripe-checkout": "^2.6.3",
+    "react-stripe-elements": "^2.0.3",
     "reactstrap": "^7.1.0",
     "redux": "^4.0.1",
     "redux-form": "^8.1.0",
