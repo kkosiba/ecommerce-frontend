@@ -1,15 +1,16 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { Field, FormSection, reduxForm } from "redux-form";
-import RenderField from "./RenderField";
+import { /* Field, FormSection, */ reduxForm } from "redux-form";
+// import RenderField from "./RenderField";
 import validate from "../Utilities/Validate";
 import { toggleDifferentBillingAddress } from "../../store/actions/storeActions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Button, Form, FormGroup, Row, Collapse } from "reactstrap";
+import { Button, Form /*, FormGroup, Row, Collapse */ } from "reactstrap";
 import { Accordion } from "../Utilities/Accordion";
-import PayPal from "./PayPal";
-// import CardPayment from "./CardPayment";
+// import PayPal from "./PayPal";
+import { CardElement } from "react-stripe-elements";
+
 
 const mapStateToProps = state => {
   return {
@@ -48,14 +49,16 @@ class Payment extends Component {
     return (
       <React.Fragment>
         <Form onSubmit={handleSubmit}>
-          <Accordion open={1}>
+          <Accordion open={0}>
             <Accordion.Item>
               <Accordion.Header>
-                Pay by card (TO BE IMPLEMENTED)
+                Pay by card
               </Accordion.Header>
               <Accordion.Body>
-                {/* <CardPayment /> */}
-                <div className="my-2">
+                <div className="p-2 mb-2 shadow border">
+                  <CardElement hidePostalCode />
+                </div>
+                {/* <div className="my-4">
                   <Field
                     name="isDifferentBilling"
                     type="checkbox"
@@ -117,7 +120,7 @@ class Payment extends Component {
                       </FormGroup>
                     </Row>
                   </FormSection>
-                </Collapse>
+                </Collapse> */}
                 <div className="d-flex">
                   <Button type="submit" className="btn btn-dark ml-auto">
                     Order & Pay
@@ -126,9 +129,10 @@ class Payment extends Component {
               </Accordion.Body>
             </Accordion.Item>
             <Accordion.Item>
-              <Accordion.Header>PayPal</Accordion.Header>
+              <Accordion.Header>PayPal (not implemented yet)</Accordion.Header>
               <Accordion.Body>
-                <PayPal />
+                to do...
+                {/* <PayPal /> */}
               </Accordion.Body>
             </Accordion.Item>
           </Accordion>
