@@ -7,7 +7,6 @@ import {
   toggleCheckoutComplete,
   emptyCart
 } from "../../store/actions/storeActions";
-import { reset } from "redux-form";
 import Address from "./Address";
 import Delivery from "./Delivery";
 import Payment from "./Payment";
@@ -16,6 +15,9 @@ import OrderFinal from "./OrderFinal";
 import OrderSummary from "./OrderSummary";
 import CheckoutNavbar from "./CheckoutNavbar";
 import { Row, Col } from "reactstrap";
+import { API_PATH } from "../../backend_url";
+import { injectStripe } from "react-stripe-elements";
+import { reset } from "redux-form";
 
 const mapStateToProps = state => {
   return state.store;
@@ -30,6 +32,18 @@ const mapDispatchToProps = dispatch => {
     toggleCheckoutComplete: () => dispatch(toggleCheckoutComplete()),
     resetCheckoutForm: () => dispatch(reset("checkout"))
   };
+};
+
+const mapShippingStringToNumeric = value => {
+  switch (value) {
+    case "free":
+    case "collection":
+      return 0.0;
+    case "express":
+      return 10.0;
+    default:
+      return 5.0;
+  }
 };
 
 class Checkout extends Component {
@@ -69,7 +83,42 @@ class Checkout extends Component {
   }
 
   handlePayment(values) {
-    this.props.toggleCheckoutComplete();
+    const { subtotal, tax, shipping } = this.props;
+    const shippingNumeric = mapShippingStringToNumeric(shipping);
+    const afterTax = tax * subtotal;
+    const total = subtotal + afterTax + shippingNumeric;
+
+    const { firstName, lastName } = values.shippingAddress;
+
+    return this.props.stripe
+      .createToken({ name: firstName + " " + lastName })
+      .then(res => {
+        try {
+          let formData = new FormData();
+          formData.append("amount", total * 100); // *100 because stripe processes pence
+          formData.append("currency", "GBP");
+          formData.append("source", res.token.id);
+          return fetch(`${API_PATH}payments/`, {
+            method: "POST",
+            headers: {
+              accept: "application/json"
+            },
+            body: formData
+          }).then(res => {
+            this.props.toggleCheckoutComplete();
+            if (res.ok) {
+              this.props.setPayment("success");
+              this.props.emptyCart();
+            } else {
+              this.props.setPayment("error");
+            }
+          });
+        } catch (err) {
+          console.log(err);
+          this.props.toggleCheckoutComplete();
+          this.props.setPayment("error");
+        }
+      });
   }
 
   render() {
@@ -132,7 +181,9 @@ Checkout.propTypes = {
   toggleCheckoutComplete: PropTypes.func.isRequired
 };
 
-export default connect(
+Checkout = connect(
   mapStateToProps,
   mapDispatchToProps
 )(Checkout);
+
+export default injectStripe(Checkout);
