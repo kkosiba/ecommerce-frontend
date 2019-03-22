@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { /* Field, FormSection, */ reduxForm } from "redux-form";
 // import RenderField from "./RenderField";
-import validate from "../Utilities/Validate";
 import { toggleDifferentBillingAddress } from "../../store/actions/storeActions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button, Form /*, FormGroup, Row, Collapse */ } from "reactstrap";
@@ -164,7 +163,6 @@ Payment = reduxForm({
   keepDirtyOnReinitialize: true,
   updateUnregisteredFields: true,
   enableReinitialize: true,
-  validate
 })(Payment);
 
 export default connect(
