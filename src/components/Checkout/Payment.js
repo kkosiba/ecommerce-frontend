@@ -43,16 +43,14 @@ class Payment extends Component {
   }
 
   render() {
-    const { handleSubmit, previousPage } = this.props;
+    const { handleSubmit, previousPage, submitting } = this.props;
 
     return (
       <React.Fragment>
         <Form onSubmit={handleSubmit}>
           <Accordion open={0}>
             <Accordion.Item>
-              <Accordion.Header>
-                Pay by card
-              </Accordion.Header>
+              <Accordion.Header>Pay by card</Accordion.Header>
               <Accordion.Body>
                 <div className="p-2 mb-2 shadow border">
                   <CardElement hidePostalCode />
@@ -121,7 +119,11 @@ class Payment extends Component {
                   </FormSection>
                 </Collapse> */}
                 <div className="d-flex">
-                  <Button type="submit" className="btn btn-dark ml-auto">
+                  <Button
+                    type="submit"
+                    disabled={submitting}
+                    className="btn btn-dark ml-auto"
+                  >
                     Order & Pay
                   </Button>
                 </div>
@@ -151,6 +153,7 @@ class Payment extends Component {
 }
 
 Payment.propTypes = {
+  submitting: PropTypes.bool,
   handleSubmit: PropTypes.func.isRequired,
   previousPage: PropTypes.func.isRequired,
   toggleDifferentBillingAddress: PropTypes.func.isRequired
@@ -162,7 +165,7 @@ Payment = reduxForm({
   forceUnregisterOnUnmount: true, // unregister fields on unmount
   keepDirtyOnReinitialize: true,
   updateUnregisteredFields: true,
-  enableReinitialize: true,
+  enableReinitialize: true
 })(Payment);
 
 export default connect(
