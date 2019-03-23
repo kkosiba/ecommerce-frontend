@@ -20,7 +20,10 @@ import { injectStripe } from "react-stripe-elements";
 import { reset } from "redux-form";
 
 const mapStateToProps = state => {
-  return state.store;
+  return {
+    store: state.store,
+    isAuthenticated: state.auth.token !== null
+  };
 };
 
 const mapDispatchToProps = dispatch => {
@@ -59,7 +62,7 @@ class Checkout extends Component {
   }
 
   componentDidMount() {
-    const { cart } = this.props;
+    const { cart } = this.props.store;
     try {
       const serializedCart = JSON.stringify(cart);
       localStorage.setItem("cart", serializedCart);
@@ -69,7 +72,7 @@ class Checkout extends Component {
   }
 
   componentWillUnmount() {
-    this.props.resetCheckoutForm();
+    // this.props.resetCheckoutForm();
     if (this.props.isCheckoutComplete) this.props.toggleCheckoutComplete();
     this.props.setPayment("");
   }
@@ -82,12 +85,15 @@ class Checkout extends Component {
     this.setState({ page: this.state.page - 1 });
   }
 
-  handlePayment(values) {
-    const { subtotal, tax, shipping } = this.props;
+  calculateTotal() {
+    const { subtotal, tax, shipping } = this.props.store;
     const shippingNumeric = mapShippingStringToNumeric(shipping);
     const afterTax = tax * subtotal;
-    const total = subtotal + afterTax + shippingNumeric;
+    return parseFloat(subtotal + afterTax + shippingNumeric).toFixed(2);
+  }
 
+  handlePayment(values) {
+    const total = this.calculateTotal();
     const { firstName, lastName } = values.shippingAddress;
 
     return this.props.stripe
@@ -105,13 +111,13 @@ class Checkout extends Component {
             },
             body: formData
           }).then(res => {
-            this.props.toggleCheckoutComplete();
             if (res.ok) {
               this.props.setPayment("success");
               this.props.emptyCart();
             } else {
               this.props.setPayment("error");
             }
+            this.props.toggleCheckoutComplete();
           });
         } catch (err) {
           console.log(err);
@@ -123,58 +129,69 @@ class Checkout extends Component {
 
   render() {
     const { page } = this.state;
-    const { cart, isCheckoutComplete } = this.props;
+    const { cart, isCheckoutComplete } = this.props.store;
+    const { isAuthenticated } = this.props;
 
-    if (isCheckoutComplete) {
-      return <OrderFinal />;
-    } else if (cart.length === 0) {
-      return (
-        <React.Fragment>
-          <h3 className="text-center mt-2">
-            Add some products to the cart first, then come back here :)
-          </h3>
-        </React.Fragment>
-      );
+    if (isAuthenticated) {
+      if (isCheckoutComplete) {
+        return <OrderFinal />;
+      } else if (cart.length === 0) {
+        return (
+          <React.Fragment>
+            <h3 className="text-center mt-2">
+              Add some products to the cart first, then come back here :)
+            </h3>
+          </React.Fragment>
+        );
+      } else {
+        return (
+          <React.Fragment>
+            {/* <Prompt message="Are you sure you want to leave? Your checkout data will be lost." /> */}
+            <h3 className="mb-4">Checkout</h3>
+            <Row>
+              <Col lg="8">
+                <CheckoutNavbar active={page} />
+                {page === 1 && <Address onSubmit={this.nextPage} />}
+                {page === 2 && (
+                  <Delivery
+                    previousPage={this.previousPage}
+                    onSubmit={this.nextPage}
+                  />
+                )}
+                {page === 3 && (
+                  <OrderReview
+                    previousPage={this.previousPage}
+                    onSubmit={this.nextPage}
+                  />
+                )}
+                {page === 4 && (
+                  <Payment
+                    previousPage={this.previousPage}
+                    onSubmit={this.handlePayment}
+                  />
+                )}
+              </Col>
+              <div className="col-lg-4">
+                <OrderSummary />
+              </div>
+            </Row>
+          </React.Fragment>
+        );
+      }
     } else {
       return (
-        <React.Fragment>
-          <Prompt message="Are you sure you want to leave? Your checkout data will be lost." />
-          <h3 className="mb-4">Checkout</h3>
-          <Row>
-            <Col lg="8">
-              <CheckoutNavbar active={page} />
-              {page === 1 && <Address onSubmit={this.nextPage} />}
-              {page === 2 && (
-                <Delivery
-                  previousPage={this.previousPage}
-                  onSubmit={this.nextPage}
-                />
-              )}
-              {page === 3 && (
-                <OrderReview
-                  previousPage={this.previousPage}
-                  onSubmit={this.nextPage}
-                />
-              )}
-              {page === 4 && (
-                <Payment
-                  previousPage={this.previousPage}
-                  onSubmit={this.handlePayment}
-                />
-              )}
-            </Col>
-            <div className="col-lg-4">
-              <OrderSummary />
-            </div>
-          </Row>
-        </React.Fragment>
+        <div className="d-flex flex-column align-items-center justify-content-center">
+          <h1 className="font-weight-bold">
+            You must be logged in to view this page.
+          </h1>
+        </div>
       );
     }
   }
 }
 
 Checkout.propTypes = {
-  cart: PropTypes.array.isRequired,
+  cart: PropTypes.array,
   isCheckoutComplete: PropTypes.bool,
   resetCheckoutForm: PropTypes.func.isRequired,
   setPayment: PropTypes.func.isRequired,
