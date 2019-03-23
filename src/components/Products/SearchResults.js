@@ -1,11 +1,9 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-// import { withRouter } from "react-router-dom";
-
 import { connect } from "react-redux";
 import { fetchProducts } from "../../store/actions/storeActions";
-
 import Product from "./Product";
+import "./css/products.css";
 
 const mapStateToProps = state => {
   return state.store;

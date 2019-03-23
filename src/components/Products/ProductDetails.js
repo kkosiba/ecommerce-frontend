@@ -2,16 +2,15 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import axios from "axios";
-
 import { connect } from "react-redux";
 import {
   addProductToCart,
   removeProductFromCart
 } from "../../store/actions/storeActions";
-
 import { API_PATH } from "../../backend_url";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Default from "../Default";
+import Default from "../Misc/Default";
+import "./css/products.css";
 
 const mapStateToProps = state => {
   return state.store;
@@ -95,14 +94,12 @@ class ProductDetails extends Component {
           <div className="col-md-6">
             <div className="card rounded-0">
               <div className="card-body">
-                <h3>
-                  <strong>{product.name}</strong>
-                </h3>
+                <h3 className="font-weight-bold">{product.name}</h3>
                 <p className="card-text pt-2">{product.description}</p>
                 <p className="card-text pt-2">
                   <strong>Price:</strong> £{product.price}
                 </p>
-                <p className="card-text pt-2">
+                <p className="card-text py-3 border-bottom">
                   <strong>Availability:</strong>
                   {product.quantity > 0
                     ? product.quantity > 20
@@ -110,8 +107,6 @@ class ProductDetails extends Component {
                       : " Just a few left!"
                     : " Out of stock"}
                 </p>
-
-                <hr />
 
                 <div className="input-group justify-content-center">
                   <div className="input-group-prepend">
@@ -130,7 +125,7 @@ class ProductDetails extends Component {
                   ) : (
                     <div className="input-group-append">
                       <select
-                        className="custom-select"
+                        className="form-control rounded-0"
                         value={this.state.selectValue}
                         onChange={this.handleChange}
                       >
