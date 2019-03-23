@@ -2,11 +2,10 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import * as actions from "../../store/actions/storeActions";
-
 import { Link } from "react-router-dom";
-
 import OrderSummary from "./OrderSummary";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import "./css/cart.css";
 
 const mapStateToProps = state => {
   return state.store;
