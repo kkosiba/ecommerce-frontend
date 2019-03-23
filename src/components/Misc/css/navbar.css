@@ -1,0 +1,19 @@
+@media (max-width: 576px) {
+  #searchBox {
+    margin-top: 15px;
+    margin-bottom: 10px;
+  }
+  #cartCount {
+    margin-bottom: 10px;
+  }
+  #authBtnGroup {
+    max-width: 290px;
+    margin-bottom: 10px;
+  }
+}
+
+@media (min-width: 768px) {
+  #cartCount {
+    margin-right: 10px;
+  }
+}

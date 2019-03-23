@@ -1,0 +1,29 @@
+.card-img-top {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.grid li {
+  display: flex;
+  padding: 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .grid li {
+    /* padding: 2rem; */
+    width: 33%;
+  }
+}
+
+@media (min-width: 992px) {
+  .grid li {
+    /* padding: 2rem; */
+    width: 25%;
+  }
+}
