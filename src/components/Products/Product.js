@@ -7,7 +7,7 @@ import {
   removeProductFromCart
 } from "../../store/actions/storeActions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
+import "./css/products.css";
 
 const mapStateToProps = state => {
   return state.store;
@@ -55,6 +55,13 @@ class Product extends Component {
                   onClick={() => this.props.addProductToCart(item)}
                 >
                   <FontAwesomeIcon icon="cart-plus" />
+                  {this.inCart() > 0 ? (
+                    <span className="ml-2 font-weight-bold">
+                      {this.inCart()}
+                    </span>
+                  ) : (
+                    ""
+                  )}
                 </button>
                 {this.inCart() > 0 ? (
                   <button
