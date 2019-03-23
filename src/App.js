@@ -13,8 +13,10 @@ import { authCheckState } from "./store/actions/authActions";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./css/App.css";
 
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
+import Navbar from "./components/Misc/Navbar";
+import Footer from "./components/Misc/Footer";
+import About from "./components/Misc/About";
+import Default from "./components/Misc/Default";
 
 import ProductList from "./components/Products/ProductList";
 import ProductDetails from "./components/Products/ProductDetails";
@@ -22,9 +24,6 @@ import SearchResults from "./components/Products/SearchResults";
 
 import Cart from "./components/Checkout/Cart";
 import Checkout from "./components/Checkout/Checkout";
-
-import About from "./components/About";
-import Default from "./components/Default";
 
 // scroll page back to top once component updates
 import ScrollToTop from "./components/Utilities/ScrollToTop";
@@ -113,7 +112,6 @@ class App extends Component {
     return (
       <StripeProvider apiKey="pk_test_67GPkLu3pZ7ox2x91a9W4z4A001eANPQFQ">
         <Router history={history}>
-          {/* <LastLocationProvider> */}
           <ScrollToTop>
             <Navbar />
             <Container className="content my-4">
@@ -137,7 +135,6 @@ class App extends Component {
 
             <Footer />
           </ScrollToTop>
-          {/* </LastLocationProvider> */}
         </Router>
       </StripeProvider>
     );
@@ -145,7 +142,7 @@ class App extends Component {
 }
 
 App.propTypes = {
-  onTryAutoSignup: PropTypes.func
+  authCheckState: PropTypes.func
 };
 
 export default connect(
