@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Newsletter from "./Newsletter";
-
 import { Container } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 

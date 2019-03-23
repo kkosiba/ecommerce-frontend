@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { InputGroup, InputGroupAddon, Input, Button } from "reactstrap";
 import axios from "axios";
-import { API_PATH } from "../backend_url";
+import { API_PATH } from "../../backend_url";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default class Newsletter extends Component {

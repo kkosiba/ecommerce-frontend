@@ -1,13 +1,10 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-
 import { Link } from "react-router-dom";
-import SearchForm from "./Products/SearchForm";
+import SearchForm from "../Products/SearchForm";
 import jwt_decode from "jwt-decode"; // for decoding JWT tokens
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 import {
   Navbar as NavBar,
   NavbarBrand,
@@ -19,8 +16,8 @@ import {
   ButtonGroup,
   Button
 } from "reactstrap";
-
-import { authLogout } from "../store/actions/authActions";
+import { authLogout } from "../../store/actions/authActions";
+import "./css/navbar.css";
 
 const mapStateToProps = state => {
   return {
