@@ -18,6 +18,7 @@ import { Row, Col } from "reactstrap";
 import { API_PATH } from "../../backend_url";
 import { injectStripe } from "react-stripe-elements";
 import { reset } from "redux-form";
+import "./css/checkout.css";
 
 const mapStateToProps = state => {
   return {
