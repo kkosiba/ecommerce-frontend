@@ -23,6 +23,9 @@ class Address extends Component {
                 <Field
                   name="firstName"
                   type="text"
+                  // input={{
+                  //   disabled: true
+                  // }}
                   component={RenderField}
                   label="First Name"
                   validate={[required, ]}
@@ -32,6 +35,9 @@ class Address extends Component {
                 <Field
                   name="lastName"
                   type="text"
+                  // input={{
+                  //   disabled: true
+                  // }}
                   component={RenderField}
                   label="Last Name"
                   validate={[required, ]}
