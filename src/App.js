@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Router, Switch, Route } from "react-router-dom";
-// import { LastLocationProvider } from "react-router-last-location";
 
 // custom history to enable users redirecting from outside of components
 import { history } from "./history";
