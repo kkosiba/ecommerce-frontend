@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Prompt } from "react-router-dom";
+// import { Prompt } from "react-router-dom";
 import { connect } from "react-redux";
 import {
   setPayment,
