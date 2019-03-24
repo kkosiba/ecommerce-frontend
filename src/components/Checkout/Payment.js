@@ -36,6 +36,10 @@ class Payment extends Component {
       collapse: false
     };
   }
+  
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
 
   toggle() {
     this.setState({ collapse: !this.state.collapse });

@@ -37,6 +37,7 @@ class Delivery extends Component {
   }
 
   componentDidMount() {
+    window.scrollTo(0, 0); // scroll to top of the page
     if (this.props.subtotal >= 100) {
       this.setState({ option: "free" });
     }

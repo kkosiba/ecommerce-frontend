@@ -4,12 +4,18 @@ import { connect } from "react-redux";
 import { reduxForm } from "redux-form";
 import { Row, Col, Button, Form } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import "./css/cart.css";
 
 const mapStateToProps = state => {
   return state.store;
 };
 
 class OrderReview extends Component {
+
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
+
   render() {
     const { handleSubmit, previousPage, cart } = this.props;
 
