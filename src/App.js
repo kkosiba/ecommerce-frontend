@@ -124,11 +124,12 @@ class App extends Component {
                 <Route exact path="/product/:slug" component={ProductDetails} />
                 <Route exact path="/search/:query" component={SearchResults} />
                 <Route exact path="/cart" component={Cart} />
+                <Route exact path="/about" component={About} />
+                <Route exact component={Default} />
+
                 <Elements>
                   <PrivateRoute exact path="/checkout" component={Checkout} />
                 </Elements>
-                <Route exact path="/about" component={About} />
-                <Route exact component={Default} />
               </Switch>
             </Container>
 
