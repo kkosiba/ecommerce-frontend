@@ -13,14 +13,15 @@ export default class Newsletter extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleSubmit = e => {
+  handleSubmit = async e => {
     e.preventDefault();
-    axios
+    await axios
       .post(`${API_PATH}subscribers/`, { email: this.state.email })
       .then(res => alert("Successfully subscribed!"))
       .catch(err =>
         alert(`The email ${this.state.email} is already a subscriber!`)
       );
+    this.setState({ email: "" }); // clear input after submission
   };
 
   render() {
@@ -35,6 +36,7 @@ export default class Newsletter extends Component {
             <Input
               type="email"
               placeholder="Your email address"
+              value={this.state.email}
               onChange={e => this.setState({ email: e.target.value })}
             />
             <InputGroupAddon addonType="append">
