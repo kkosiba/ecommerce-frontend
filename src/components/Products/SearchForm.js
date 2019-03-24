@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
-
 import { Form, Input, InputGroup, InputGroupAddon, Button } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -17,6 +16,7 @@ class SearchForm extends Component {
   handleSubmit = e => {
     e.preventDefault();
     this.props.history.push(`/search/${this.state.query}`);
+    this.setState({ query: "" });
   };
 
   renderSearchForm = () => {
@@ -28,6 +28,7 @@ class SearchForm extends Component {
             type="text"
             placeholder="Search store..."
             label="Search store..."
+            value={this.state.query}
             className="border-0"
             onChange={e => this.setState({ query: e.target.value })}
           />
