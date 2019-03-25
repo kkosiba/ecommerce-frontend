@@ -109,7 +109,7 @@ class App extends Component {
 
   render() {
     return (
-      <StripeProvider apiKey="pk_test_67GPkLu3pZ7ox2x91a9W4z4A001eANPQFQ">
+      <StripeProvider apiKey={process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY}>
         <Router history={history}>
           <ScrollToTop>
             <Navbar />
