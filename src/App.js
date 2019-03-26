@@ -110,32 +110,37 @@ class App extends Component {
   render() {
     return (
       <StripeProvider apiKey={process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY}>
-        <Router history={history}>
-          <ScrollToTop>
-            <Navbar />
-            <Container className="content my-4">
-              <Switch>
-                <Route exact path="/" component={ProductList} />
-                <Route exact path="/login" component={Login} />
-                <Route exact path="/register" component={Register} />
-
-                {/* <PrivateRoute path="/profile" component={Profile} /> */}
-
-                <Route exact path="/product/:slug" component={ProductDetails} />
-                <Route exact path="/search/:query" component={SearchResults} />
-                <Route exact path="/cart" component={Cart} />
-                <Route exact path="/about" component={About} />
-
-                <Elements>
+        <Elements>
+          <Router history={history}>
+            <ScrollToTop>
+              <Navbar />
+              <Container className="content my-4">
+                <Switch>
+                  <Route exact path="/" component={ProductList} />
+                  <Route exact path="/login" component={Login} />
+                  <Route exact path="/register" component={Register} />
+                  {/* <PrivateRoute path="/profile" component={Profile} /> */}
+                  <Route
+                    exact
+                    path="/product/:slug"
+                    component={ProductDetails}
+                  />
+                  <Route
+                    exact
+                    path="/search/:query"
+                    component={SearchResults}
+                  />
+                  <Route exact path="/cart" component={Cart} />
+                  <Route exact path="/about" component={About} />
                   <PrivateRoute exact path="/checkout" component={Checkout} />
-                </Elements>
-                <Route exact component={Default} />
-              </Switch>
-            </Container>
+                  <Route component={Default} />
+                </Switch>
+              </Container>
 
-            <Footer />
-          </ScrollToTop>
-        </Router>
+              <Footer />
+            </ScrollToTop>
+          </Router>
+        </Elements>
       </StripeProvider>
     );
   }
