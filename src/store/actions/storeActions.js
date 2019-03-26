@@ -24,10 +24,10 @@ export const fetchProducts = (query = "") => {
     if (query === "") {
       return axios
         .get(`${API_PATH}products/`)
-        .then(res => {
+        .then(res => dispatch(fetchProductsSuccess(res.data))
           // to simulate server latency
-          setTimeout(() => dispatch(fetchProductsSuccess(res.data)), 1000);
-        })
+          // setTimeout(() => dispatch(fetchProductsSuccess(res.data)), 1000);
+        )
         .catch(err => dispatch(fetchProductsFail(err)));
     } else {
       return axios
