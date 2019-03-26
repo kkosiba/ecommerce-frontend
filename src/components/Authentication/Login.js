@@ -125,7 +125,6 @@ class Login extends Component {
     ) : (
       <React.Fragment>
         {error ? this.renderErrorMessage() : ""}
-        {JSON.stringify(this.props.lastLocation)}
         {this.renderLoginForm(token)}
       </React.Fragment>
     );
