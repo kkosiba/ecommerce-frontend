@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Redirect, Link } from "react-router-dom";
-import { withLastLocation } from 'react-router-last-location';
+import { withLastLocation } from "react-router-last-location";
 import { connect } from "react-redux";
 import { authClearErrors, authLogin } from "../../store/actions/authActions";
-
+import { history } from "../../history";
 
 import {
   Form,
@@ -32,7 +32,8 @@ class Login extends Component {
     super(props);
     this.state = {
       email: "",
-      password: ""
+      password: "",
+      redirectToReferrer: false
     };
   }
 
@@ -40,14 +41,10 @@ class Login extends Component {
     this.props.authClearErrors(); // clear errors
   }
 
-  handleSubmit = e => {
+  handleSubmit = async e => {
     e.preventDefault();
-    this.props.authLogin(this.state.email, this.state.password);
-    const { error, lastLocation } = this.props;
-    // let from = this.props.lastLocation !== null ? this.props.lastLocation : "/";
-    if (error === null && lastLocation !== null) {
-      this.props.history.push(this.props.lastLocation);
-    }
+    await this.props.authLogin(this.state.email, this.state.password);
+    if (!this.props.error) this.setState({ redirectToReferrer: true });
   };
 
   renderErrorMessage = () => {
@@ -97,7 +94,7 @@ class Login extends Component {
               </Button>
               <div className="d-flex justify-content-between flex-column flex-lg-row mt-4">
                 <span>
-                  <Link to="/password_recovery">Forgot your password?</Link>
+                  <Link to="/password_reset">Forgot your password?</Link>
                 </span>
                 <span>
                   Don't have an account? <Link to="/register">Register</Link>
@@ -115,6 +112,10 @@ class Login extends Component {
 
   render() {
     const { token, error, loading } = this.props;
+    let { from } = this.props.location.state || {
+      from: { pathname: this.props.lastLocation.pathname }
+    };
+    let { redirectToReferrer } = this.state;
 
     return loading ? (
       <Spinner
@@ -122,6 +123,8 @@ class Login extends Component {
         style={{ width: "3rem", height: "3rem" }}
         className="m-auto"
       />
+    ) : redirectToReferrer && !error ? (
+      <Redirect to={from} />
     ) : (
       <React.Fragment>
         {error ? this.renderErrorMessage() : ""}

@@ -1,12 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Router, Switch, Route } from "react-router-dom";
-
-// custom history to enable users redirecting from outside of components
-import { history } from "./history";
-
+import { Switch, Route } from "react-router-dom";
 import { connect } from "react-redux";
-
 import { authCheckState } from "./store/actions/authActions";
 
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -69,6 +64,7 @@ import {
   faAngleLeft,
   faAngleRight
 } from "@fortawesome/free-solid-svg-icons";
+// import PasswordReset from "./components/Authentication/PasswordReset";
 
 library.add(
   faFacebookF,
@@ -111,35 +107,26 @@ class App extends Component {
     return (
       <StripeProvider apiKey={process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY}>
         <Elements>
-          <Router history={history}>
-            <ScrollToTop>
-              <Navbar />
-              <Container className="content my-4">
-                <Switch>
-                  <Route exact path="/" component={ProductList} />
-                  <Route exact path="/login" component={Login} />
-                  <Route exact path="/register" component={Register} />
-                  {/* <PrivateRoute path="/profile" component={Profile} /> */}
-                  <Route
-                    exact
-                    path="/product/:slug"
-                    component={ProductDetails}
-                  />
-                  <Route
-                    exact
-                    path="/search/:query"
-                    component={SearchResults}
-                  />
-                  <Route exact path="/cart" component={Cart} />
-                  <Route exact path="/about" component={About} />
-                  <PrivateRoute exact path="/checkout" component={Checkout} />
-                  <Route component={Default} />
-                </Switch>
-              </Container>
+          <ScrollToTop>
+            <Navbar />
+            <Container className="content my-4">
+              <Switch>
+                <Route exact path="/" component={ProductList} />
+                <Route exact path="/login" component={Login} />
+                <Route exact path="/register" component={Register} />
+                {/* <Route exact path="/password_reset" component={PasswordReset} /> */}
+                {/* <PrivateRoute path="/profile" component={Profile} /> */}
+                <Route exact path="/product/:slug" component={ProductDetails} />
+                <Route exact path="/search/:query" component={SearchResults} />
+                <Route exact path="/cart" component={Cart} />
+                <Route exact path="/about" component={About} />
+                <PrivateRoute exact path="/checkout" component={Checkout} />
+                <Route component={Default} />
+              </Switch>
+            </Container>
 
-              <Footer />
-            </ScrollToTop>
-          </Router>
+            <Footer />
+          </ScrollToTop>
         </Elements>
       </StripeProvider>
     );
