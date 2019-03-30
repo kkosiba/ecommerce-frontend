@@ -17,7 +17,3 @@ to install all dependencies. Then, one can run frontend on `localhost:3000` by i
 `npm start`
 
 <!-- For PayPal to work, one needs to provide `REACT_APP_PAYPAL_SANDBOX_ID` environment variable in `frontend/.env.development`. The ID can be obtained [here](https://developer.paypal.com/developer/accounts/). -->
-
-
-## Known issues
-1. Succesful login/registration does not redirect user to the previously visited page.
