@@ -3,8 +3,6 @@ import { Redirect, Link } from "react-router-dom";
 import { withLastLocation } from "react-router-last-location";
 import { connect } from "react-redux";
 import { authClearErrors, authLogin } from "../../store/actions/authActions";
-import { history } from "../../history";
-
 import {
   Form,
   FormGroup,
