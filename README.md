@@ -1,5 +1,7 @@
 # ecommerce-frontend
-React+Redux frontend for eCommerce project
+React+Redux frontend for eCommerce project. 
+
+The deployed version is available on [Heroku](https://ecommerce-frontend-react.herokuapp.com/). Sample testing credentials: `(test@abc.com, testpassword)`
 
 Features
 --------
@@ -15,5 +17,3 @@ For the frontend it is enough to run
 to install all dependencies. Then, one can run frontend on `localhost:3000` by issuing
 
 `npm start`
-
-<!-- For PayPal to work, one needs to provide `REACT_APP_PAYPAL_SANDBOX_ID` environment variable in `frontend/.env.development`. The ID can be obtained [here](https://developer.paypal.com/developer/accounts/). -->
