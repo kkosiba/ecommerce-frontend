@@ -57,7 +57,7 @@ class Login extends Component {
     // if there is no token, go to login
     return token === null ? (
       <Row>
-        <Col md="6" className="mx-auto card p-4">
+        <Col md="7" className="mx-auto card p-4">
           <Form onSubmit={e => this.handleSubmit(e)}>
             <h3 className="text-center font-weight-bold">Login</h3>
             <FormGroup>
