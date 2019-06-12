@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link, Redirect } from "react-router-dom";
 
 import { connect } from "react-redux";
-import { authSignup } from "../../store/actions/authActions";
+import { authClearErrors, authSignup } from "../../store/actions/authActions";
 
 import { Form, FormGroup, Label, Input, Button, Row, Col } from "reactstrap";
 
@@ -12,10 +12,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onAuth: (email, password1, password2, first_name, last_name) =>
-      dispatch(
-        authSignup(email, password1, password2, first_name, last_name)
-      )
+    authClearErrors: () => dispatch(authClearErrors()),
+    authSignup: (email, password1, password2, first_name, last_name) =>
+      dispatch(authSignup(email, password1, password2, first_name, last_name))
   };
 };
 
@@ -31,9 +30,13 @@ class Register extends Component {
     };
   }
 
+  componentDidMount() {
+    this.props.authClearErrors(); // clear errors
+  }
+
   handleSubmit = e => {
     e.preventDefault();
-    this.props.onAuth(
+    this.props.authSignup(
       this.state.email,
       this.state.password1,
       this.state.password2,
@@ -42,87 +45,140 @@ class Register extends Component {
     );
   };
 
-  render() {
-    const { token } = this.props;
+  renderErrorMessage = error => {
+    return error;
+  };
 
+  renderRegistrationForm = (token, error) => {
+    // if there is no token, go to registration
     return token === null ? (
-      <React.Fragment>
-        <Row>
-          <Col md="6" className="mx-auto card p-4">
-            <Form onSubmit={e => this.handleSubmit(e)}>
-              <h3 className="text-center font-weight-bold">Register</h3>
-              <FormGroup>
-                <Label for="firstName">
-                  <strong>First name</strong>
-                </Label>
-                <Input
-                  id="firstName"
-                  type="text"
-                  onChange={e => this.setState({ first_name: e.target.value })}
-                  className="mb-2"
-                />
-              </FormGroup>
+      <Row>
+        <Col md="7" className="mx-auto card p-4">
+          <Form onSubmit={e => this.handleSubmit(e)}>
+            <h3 className="text-center font-weight-bold">Register</h3>
+            <FormGroup>
+              <Label
+                for="firstName"
+                className="d-flex flex-column flex-lg-row font-weight-bold"
+              >
+                <div>First name</div>
+                <div className="ml-auto text-danger">
+                  {error && error.response.data.first_name
+                    ? this.renderErrorMessage(error.response.data.first_name)
+                    : ""}
+                </div>
+              </Label>
+              <Input
+                id="firstName"
+                type="text"
+                onChange={e => this.setState({ first_name: e.target.value })}
+                className="mb-2"
+              />
+            </FormGroup>
 
-              <FormGroup>
-                <Label for="lastName">
-                  <strong>Last name</strong>
-                </Label>
-                <Input
-                  id="lastName"
-                  type="text"
-                  onChange={e => this.setState({ last_name: e.target.value })}
-                  className="mb-2"
-                />
-              </FormGroup>
+            <FormGroup>
+              <Label
+                for="lastName"
+                className="d-flex flex-column flex-lg-row font-weight-bold"
+              >
+                <div>Last name</div>
+                <div className="ml-auto text-danger">
+                  {error && error.response.data.last_name
+                    ? this.renderErrorMessage(error.response.data.last_name)
+                    : ""}
+                </div>
+              </Label>
+              <Input
+                id="lastName"
+                type="text"
+                onChange={e => this.setState({ last_name: e.target.value })}
+                className="mb-2"
+              />
+            </FormGroup>
 
-              <FormGroup>
-                <Label for="email">
-                  <strong>Email address</strong>
-                </Label>
-                <Input
-                  id="email"
-                  type="email"
-                  onChange={e => this.setState({ email: e.target.value })}
-                  className="mb-2"
-                />
-              </FormGroup>
-              <FormGroup>
-                <Label for="password1">
-                  <strong>Password</strong>
-                </Label>
-                <Input
-                  id="password1"
-                  type="password"
-                  onChange={e => this.setState({ password1: e.target.value })}
-                  className="mb-2"
-                />
-              </FormGroup>
-              <FormGroup>
-                <Label for="password2">
-                  <strong>Confirm password</strong>
-                </Label>
-                <Input
-                  id="password2"
-                  type="password"
-                  onChange={e => this.setState({ password2: e.target.value })}
-                  className="mb-4"
-                />
-              </FormGroup>
+            <FormGroup>
+              <Label
+                for="email"
+                className="d-flex flex-column flex-lg-row font-weight-bold"
+              >
+                <div>Email address</div>
+                <div className="ml-auto text-danger">
+                  {error && error.response.data.email
+                    ? this.renderErrorMessage(error.response.data.email)
+                    : ""}
+                </div>
+              </Label>
+              <Input
+                id="email"
+                type="email"
+                onChange={e => this.setState({ email: e.target.value })}
+                className="mb-2"
+              />
+            </FormGroup>
+            <FormGroup>
+              <Label
+                for="password1"
+                className="d-flex flex-column flex-lg-row font-weight-bold"
+              >
+                <div>Password</div>
+                <div className="ml-auto text-danger">
+                  {error && error.response.data.password1
+                    ? this.renderErrorMessage(error.response.data.password1)
+                    : ""}
+                </div>
+              </Label>
+              <Input
+                id="password1"
+                type="password"
+                onChange={e => this.setState({ password1: e.target.value })}
+                className="mb-2"
+              />
+            </FormGroup>
+            <FormGroup>
+              <Label
+                for="password2"
+                className="d-flex flex-column flex-lg-row font-weight-bold"
+              >
+                <div>Confirm password</div>
+                <div className="ml-auto text-danger">
+                  {error && error.response.data.non_field_errors
+                    ? this.renderErrorMessage(
+                        error.response.data.non_field_errors
+                      )
+                    : ""}
+                </div>
+              </Label>
+              <Input
+                id="password2"
+                type="password"
+                onChange={e => this.setState({ password2: e.target.value })}
+                className="mb-4"
+              />
+            </FormGroup>
 
-              <div className="text-center">
-                <Button color="primary" type="submit">
-                  Register
-                </Button>
-                <p className="mt-4">
-                  Already a member? <Link to="/login">Login</Link>
-                </p>
-              </div>
-            </Form>
-          </Col>
-        </Row>
-      </React.Fragment>
+            <div className="text-center">
+              <Button color="primary" type="submit">
+                Register
+              </Button>
+              <p className="mt-4">
+                Already a member? <Link to="/login">Login</Link>
+              </p>
+            </div>
+          </Form>
+        </Col>
+      </Row>
     ) : (
       <Redirect to="/" />
+    );
+  };
+
+  render() {
+    const { token, error } = this.props;
+
+    return (
+      <React.Fragment>
+        {this.renderRegistrationForm(token, error)}
+      </React.Fragment>
     );
   }
 }
