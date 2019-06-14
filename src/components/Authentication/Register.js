@@ -123,7 +123,13 @@ class Register extends Component {
                 <div>Password</div>
                 <div className="ml-auto text-danger">
                   {error && error.response.data.password1
-                    ? this.renderErrorMessage(error.response.data.password1)
+                    ? this.renderErrorMessage(
+                        error.response.data.password1
+                      ).map(item => (
+                        <ul className="list-unstyled" key={item.id}>
+                          <li>{item}</li>
+                        </ul>
+                      ))
                     : ""}
                 </div>
               </Label>
