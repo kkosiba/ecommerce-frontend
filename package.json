@@ -15,7 +15,6 @@
     "prop-types": "^15.7.2",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
-    "react-paypal-express-checkout": "^1.0.5",
     "react-redux": "^6.0.1",
     "react-router-dom": "^5.3.3",
     "react-router-last-location": "^2.0.0-beta.1",
@@ -30,23 +29,26 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "buildStart": "yarn install && yarn start",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": [
+      "react-app"
+    ]
   },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ],
-  "devDependencies": {
-    "webpack-bundle-tracker": "^0.4.2-beta"
-  },
-  "engines": {
-    "node": "11.12.0",
-    "npm": "6.9.0"
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
+
