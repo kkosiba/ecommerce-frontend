@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { Link, Redirect } from "react-router-dom";
 
 import { connect } from "react-redux";
@@ -18,7 +18,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-class Register extends Component {
+class Register extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -31,7 +31,7 @@ class Register extends Component {
   }
 
   componentDidMount() {
-    this.props.authClearErrors(); // clear errors
+    this.props.authClearErrors();
   }
 
   handleSubmit = e => {

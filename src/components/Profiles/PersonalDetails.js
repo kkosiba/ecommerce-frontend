@@ -1,5 +1,4 @@
-import React, { Component } from "react";
-// import { Redirect, Link } from "react-router-dom";
+import React from "react";
 import { connect } from "react-redux";
 import jwt_decode from "jwt-decode"; // for decoding JWT tokens
 
@@ -9,7 +8,7 @@ const mapStateToProps = state => {
   return state.auth;
 };
 
-class PersonalDetails extends Component {
+class PersonalDetails extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -18,7 +17,6 @@ class PersonalDetails extends Component {
       email: jwt_decode(this.props.token).email,
       password: ""
     };
-    // this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   renderPersonalDetails = () => {
@@ -79,11 +77,8 @@ class PersonalDetails extends Component {
   };
 
   render() {
-    // const { token } = this.props;
     return (
       <React.Fragment>
-        {/* if any error occurs after form is submitted... */}
-        {/* {this.state.error ? this.renderErrorMessage() : ""} */}
         {this.renderPersonalDetails()}
       </React.Fragment>
     );
@@ -92,5 +87,4 @@ class PersonalDetails extends Component {
 
 export default connect(
   mapStateToProps
-  // mapDispatchToProps
 )(PersonalDetails);

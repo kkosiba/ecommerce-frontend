@@ -1,10 +1,10 @@
-import React, { Component } from "react";
+import React from "react";
 import { InputGroup, InputGroupAddon, Input, Button } from "reactstrap";
 import axios from "axios";
 import { API_PATH } from "../../backend_url";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-export default class Newsletter extends Component {
+export default class Newsletter extends React.Component {
   constructor(props) {
     super(props);
     this.state = {

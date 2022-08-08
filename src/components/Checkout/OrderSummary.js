@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
@@ -20,7 +20,7 @@ const mapShippingStringToNumeric = value => {
   }
 };
 
-class OrderSummary extends Component {
+class OrderSummary extends React.Component {
   render() {
     const { subtotal, tax, shipping, isCartComponent } = this.props;
     const shippingNumeric = mapShippingStringToNumeric(shipping);

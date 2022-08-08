@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React from "react";
 
-export default class DeliveryAddress extends Component {
+export default class DeliveryAddress extends React.Component {
   render() {
     return (
       <div>

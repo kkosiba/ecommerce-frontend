@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React from "react";
 
-class CheckoutNavbar extends Component {
+class CheckoutNavbar extends React.Component {
   markActive = (page, name) => {
     const { active } = this.props;
 

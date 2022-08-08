@@ -1,11 +1,11 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
 
 const mapStateToProps = state => {
   return state.store;
 };
 
-class OrderFinalCancelled extends Component {
+class OrderFinalCancelled extends React.Component {
   render() {
     return (
       <div className="d-flex flex-column align-items-center justify-content-center">

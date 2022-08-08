@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import * as actions from "../../store/actions/storeActions";
@@ -26,7 +26,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-class Cart extends Component {
+class Cart extends React.Component {
   calculateCartSetShipping() {
     this.props.calculateCart();
     if (this.props.subtotal >= 100) {

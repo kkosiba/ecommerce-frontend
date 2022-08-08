@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import OrderFinalSuccess from "./OrderFinalSuccess";
@@ -9,7 +9,7 @@ const mapStateToProps = state => {
   return state.store;
 };
 
-class OrderFinal extends Component {
+class OrderFinal extends React.Component {
   render() {
     const { paymentStatus } = this.props;
 

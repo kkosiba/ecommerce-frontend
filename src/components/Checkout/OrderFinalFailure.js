@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import {
   setPayment,
@@ -16,7 +16,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-class OrderFinalFailure extends Component {
+class OrderFinalFailure extends React.Component {
   componentWillUnmount() {
     if (this.props.isCheckoutComplete) this.props.toggleCheckoutComplete();
     this.props.setPayment("");

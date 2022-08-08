@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { Field, reduxForm } from "redux-form";
 import { connect } from "react-redux";
@@ -22,7 +22,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-class Delivery extends Component {
+class Delivery extends React.Component {
   constructor(props) {
     super(props);
     this.state = {

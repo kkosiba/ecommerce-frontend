@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
@@ -20,7 +20,7 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-class Product extends Component {
+class Product extends React.Component {
   inCart = () => {
     const { item, cart } = this.props;
     const res = cart.find(e => e.id === item.id);

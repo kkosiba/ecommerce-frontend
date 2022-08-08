@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { reduxForm } from "redux-form";
@@ -10,7 +10,7 @@ const mapStateToProps = state => {
   return state.store;
 };
 
-class OrderReview extends Component {
+class OrderReview extends React.Component {
 
   componentDidMount() {
     window.scrollTo(0, 0);

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { fetchProducts } from "../../store/actions/storeActions";
@@ -10,7 +10,7 @@ const mapStateToProps = state => {
   return state.store;
 };
 
-class ProductList extends Component {
+class ProductList extends React.Component {
   componentDidMount() {
     this.props.dispatch(fetchProducts());
   }

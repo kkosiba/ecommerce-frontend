@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import {
   setPayment,
@@ -17,15 +17,13 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     setPayment: value => dispatch(setPayment(value)),
-    // placeOrder: values => dispatch(placeOrder(values)), // NOT YET IMPLEMENTED
-    // updateStock: data => dispatch(updateStock(data)), // NOT YET IMPLEMENTED
     emptyCart: () => dispatch(emptyCart()),
     toggleCheckoutComplete: () => dispatch(toggleCheckoutComplete()),
     resetCheckoutForm: () => dispatch(reset("checkout"))
   };
 };
 
-class CardPayment extends Component {
+class CardPayment extends React.Component {
   render() {
     return (
       <Row>

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
@@ -31,8 +31,6 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     setPayment: value => dispatch(setPayment(value)),
-    // placeOrder: values => dispatch(placeOrder(values)), // NOT YET IMPLEMENTED
-    // updateStock: data => dispatch(updateStock(data)), // NOT YET IMPLEMENTED
     emptyCart: () => dispatch(emptyCart()),
     toggleCheckoutComplete: () => dispatch(toggleCheckoutComplete()),
     resetCheckoutForm: () => dispatch(reset("checkout"))
@@ -63,14 +61,7 @@ const mapShippingStringToNumeric = value => {
   }
 };
 
-class OrderFinalSuccess extends Component {
-  // constructor(props) {
-  //   super(props);
-  //   // this.props.placeOrder(values) // place order (performs the API call)
-  //   // this.props.updateStock(this.props.cart); // deduct cart quantity from stock quantity (performs the API call)
-  //   // this.props.emptyCart();
-  // }
-
+class OrderFinalSuccess extends React.Component {
   componentDidMount() {
     window.scrollTo(0, 0);
   }

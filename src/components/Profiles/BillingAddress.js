@@ -1,15 +1,13 @@
-import React, { Component } from "react";
+import React from "react";
 import axios from "axios";
 import { API_PATH } from "../../backend_url";
-
 import { connect } from "react-redux";
-// import * as actions from "../../store/actions";
 
 const mapStateToProps = state => {
   return { token: state.token };
 };
 
-class BillingAddress extends Component {
+class BillingAddress extends React.Component {
   state = {
     addresses: [
       // {
@@ -28,11 +26,6 @@ class BillingAddress extends Component {
   componentDidMount() {
     axios
       .get(`${API_PATH}addresses/billing_details/`)
-      // , {
-      //   headers: {
-      //     "Authorization": "JWT " + this.props.token
-      //   }
-      // })
       .then(res => this.setState({ addresses: res.data }))
       .catch(err => console.log(err));
   }

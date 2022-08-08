@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { Switch, Route } from "react-router-dom";
 import { connect } from "react-redux";
@@ -26,13 +26,11 @@ import PrivateRoute from "./components/Utilities/PrivateRoute";
 
 import Login from "./components/Authentication/Login";
 import Register from "./components/Authentication/Register";
-// import Profile from "./components/Profiles/Profile";
 
 import { Container } from "reactstrap";
 
 import { Elements, StripeProvider } from "react-stripe-elements";
 
-// FontAwesome
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
   faFacebookF,
@@ -64,7 +62,6 @@ import {
   faAngleLeft,
   faAngleRight
 } from "@fortawesome/free-solid-svg-icons";
-// import PasswordReset from "./components/Authentication/PasswordReset";
 
 library.add(
   faFacebookF,
@@ -98,7 +95,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-class App extends Component {
+class App extends React.Component {
   componentDidMount() {
     this.props.authCheckState();
   }
@@ -114,8 +111,6 @@ class App extends Component {
                 <Route exact path="/" component={ProductList} />
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/register" component={Register} />
-                {/* <Route exact path="/password_reset" component={PasswordReset} /> */}
-                {/* <PrivateRoute path="/profile" component={Profile} /> */}
                 <Route exact path="/product/:slug" component={ProductDetails} />
                 <Route exact path="/search/:query" component={SearchResults} />
                 <Route exact path="/cart" component={Cart} />

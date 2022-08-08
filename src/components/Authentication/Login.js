@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { Redirect, Link } from "react-router-dom";
 import { withLastLocation } from "react-router-last-location";
 import { connect } from "react-redux";
@@ -25,7 +25,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-class Login extends Component {
+class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -36,7 +36,7 @@ class Login extends Component {
   }
 
   componentDidMount() {
-    this.props.authClearErrors(); // clear errors
+    this.props.authClearErrors();
   }
 
   handleSubmit = async e => {

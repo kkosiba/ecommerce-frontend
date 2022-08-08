@@ -1,6 +1,5 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
-// import { Prompt } from "react-router-dom";
 import { connect } from "react-redux";
 import {
   setPayment,
@@ -30,8 +29,6 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     setPayment: value => dispatch(setPayment(value)),
-    // placeOrder: values => dispatch(placeOrder(values)), // NOT YET IMPLEMENTED
-    // updateStock: data => dispatch(updateStock(data)), // NOT YET IMPLEMENTED
     emptyCart: () => dispatch(emptyCart()),
     toggleCheckoutComplete: () => dispatch(toggleCheckoutComplete()),
     resetCheckoutForm: () => dispatch(reset("checkout"))
@@ -50,7 +47,7 @@ const mapShippingStringToNumeric = value => {
   }
 };
 
-class Checkout extends Component {
+class Checkout extends React.Component {
   constructor(props) {
     super(props);
     this.nextPage = this.nextPage.bind(this);
@@ -73,7 +70,6 @@ class Checkout extends Component {
   }
 
   componentWillUnmount() {
-    // this.props.resetCheckoutForm();
     if (this.props.isCheckoutComplete) this.props.toggleCheckoutComplete();
     this.props.setPayment("");
   }
@@ -147,7 +143,6 @@ class Checkout extends Component {
       } else {
         return (
           <React.Fragment>
-            {/* <Prompt message="Are you sure you want to leave? Your checkout data will be lost." /> */}
             <h3 className="mb-4">Checkout</h3>
             <Row>
               <Col lg="8">

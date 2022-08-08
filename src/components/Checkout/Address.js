@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { Field, FormSection, reduxForm } from "redux-form";
 import RenderField from "./RenderField";
@@ -7,7 +7,7 @@ import { Form, FormGroup, Button, Row } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { required, phoneNumber, postcode } from "./Validate";
 
-class Address extends Component {
+class Address extends React.Component {
   render() {
     const { handleSubmit } = this.props;
 
@@ -23,9 +23,6 @@ class Address extends Component {
                 <Field
                   name="firstName"
                   type="text"
-                  // input={{
-                  //   disabled: true
-                  // }}
                   component={RenderField}
                   label="First Name"
                   validate={[required, ]}
@@ -35,9 +32,6 @@ class Address extends Component {
                 <Field
                   name="lastName"
                   type="text"
-                  // input={{
-                  //   disabled: true
-                  // }}
                   component={RenderField}
                   label="Last Name"
                   validate={[required, ]}

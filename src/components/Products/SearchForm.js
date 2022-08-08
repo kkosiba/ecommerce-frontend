@@ -1,10 +1,10 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 import { Form, Input, InputGroup, InputGroupAddon, Button } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-class SearchForm extends Component {
+class SearchForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {

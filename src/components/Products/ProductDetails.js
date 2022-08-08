@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -24,7 +24,7 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-class ProductDetails extends Component {
+class ProductDetails extends React.Component {
   constructor(props) {
     super(props);
     this.state = {

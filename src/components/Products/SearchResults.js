@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { fetchProducts } from "../../store/actions/storeActions";
@@ -9,7 +9,7 @@ const mapStateToProps = state => {
   return state.store;
 };
 
-class SearchResults extends Component {
+class SearchResults extends React.Component {
   componentDidMount() {
     const { query } = this.props.match.params;
     this.props.dispatch(fetchProducts(query));

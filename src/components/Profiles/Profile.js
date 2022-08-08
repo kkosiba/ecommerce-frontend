@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { BrowserRouter as Router, Switch, Link } from "react-router-dom";
 
 import { connect } from "react-redux";
@@ -21,7 +21,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-class Profile extends Component {
+class Profile extends React.Component {
   render() {
     return (
       <React.Fragment>

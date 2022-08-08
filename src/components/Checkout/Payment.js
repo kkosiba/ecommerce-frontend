@@ -1,13 +1,11 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { /* Field, FormSection, */ reduxForm } from "redux-form";
-// import RenderField from "./RenderField";
+import { reduxForm } from "redux-form";
 import { toggleDifferentBillingAddress } from "../../store/actions/storeActions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Button, Form /*, FormGroup, Row, Collapse */ } from "reactstrap";
+import { Button, Form } from "reactstrap";
 import { Accordion } from "../Utilities/Accordion";
-// import PayPal from "./PayPal";
 import { CardElement } from "react-stripe-elements";
 
 
@@ -27,7 +25,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-class Payment extends Component {
+class Payment extends React.Component {
   constructor(props) {
     super(props);
     this.toggle = this.toggle.bind(this);
@@ -53,75 +51,13 @@ class Payment extends Component {
       <React.Fragment>
         <Form onSubmit={handleSubmit}>
           <Accordion open={0}>
+            {/* Accordion because the intention was to add more collapsible options here */}
             <Accordion.Item>
               <Accordion.Header>Pay by card</Accordion.Header>
               <Accordion.Body>
                 <div className="p-2 mb-2 shadow border">
                   <CardElement hidePostalCode />
                 </div>
-                {/* <div className="my-4">
-                  <Field
-                    name="isDifferentBilling"
-                    type="checkbox"
-                    component="input"
-                    onClick={this.toggle}
-                  />{" "}
-                  Use a different billing address
-                </div>
-                <Collapse isOpen={this.state.collapse}>
-                  <FormSection name="billingAddress">
-                    <Row>
-                      <FormGroup className="col-md-6">
-                        <Field
-                          name="firstName"
-                          type="text"
-                          component={RenderField}
-                          label="First Name"
-                        />
-                      </FormGroup>
-                      <FormGroup className="col-md-6">
-                        <Field
-                          name="lastName"
-                          type="text"
-                          component={RenderField}
-                          label="Last Name"
-                        />
-                      </FormGroup>
-                      <FormGroup className="col-md-6">
-                        <Field
-                          name="city"
-                          type="text"
-                          component={RenderField}
-                          label="City"
-                        />
-                      </FormGroup>
-                      <FormGroup className="col-md-6">
-                        <Field
-                          name="street"
-                          type="text"
-                          component={RenderField}
-                          label="Street"
-                        />
-                      </FormGroup>
-                      <FormGroup className="col-md-6">
-                        <Field
-                          name="postcode"
-                          type="text"
-                          component={RenderField}
-                          label="Postcode"
-                        />
-                      </FormGroup>
-                      <FormGroup className="col-md-6">
-                        <Field
-                          name="phoneNumber"
-                          type="text"
-                          component={RenderField}
-                          label="Phone Number"
-                        />
-                      </FormGroup>
-                    </Row>
-                  </FormSection>
-                </Collapse> */}
                 <div className="d-flex">
                   <Button
                     type="submit"
@@ -131,13 +67,6 @@ class Payment extends Component {
                     Order & Pay
                   </Button>
                 </div>
-              </Accordion.Body>
-            </Accordion.Item>
-            <Accordion.Item>
-              <Accordion.Header>PayPal (not implemented yet)</Accordion.Header>
-              <Accordion.Body>
-                to do...
-                {/* <PayPal /> */}
               </Accordion.Body>
             </Accordion.Item>
           </Accordion>
