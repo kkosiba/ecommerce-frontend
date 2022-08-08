@@ -1,8 +1,6 @@
 # ecommerce-frontend
 React+Redux frontend for eCommerce project. 
 
-The deployed version is available on [Heroku](https://ecommerce-frontend-react.herokuapp.com/). Sample testing credentials: `(test@abc.com, testpassword)`
-
 Features
 --------
 1. Fully operational shopping cart: adding & removing products, incrementing/decrementing quantity of an item in cart (limited by stock availibility), clearing cart.
@@ -14,6 +12,6 @@ For the frontend it is enough to run
 
 `npm install`
 
-to install all dependencies. Then, one can run frontend on `localhost:3000` by issuing
+to install all dependencies. Then, one can run frontend on `localhost:3000` by running
 
 `npm start`
