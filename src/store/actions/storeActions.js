@@ -14,8 +14,7 @@ export const EMPTY_CART = "EMPTY_CART";
 export const CALCULATE_CART = "CALCULATE_CART";
 export const SET_SHIPPING = "SET_SHIPPING";
 export const TOGGLE_CHECKOUT_COMPLETE = "TOGGLE_CHECKOUT_COMPLETE";
-export const TOGGLE_DIFFERENT_BILLING_ADDRESS =
-  "TOGGLE_DIFFERENT_BILLING_ADDRESS";
+export const TOGGLE_DIFFERENT_BILLING_ADDRESS = "TOGGLE_DIFFERENT_BILLING_ADDRESS";
 export const SET_PAYMENT = "SET_PAYMENT";
 
 export const fetchProducts = (query = "") => {
@@ -24,10 +23,7 @@ export const fetchProducts = (query = "") => {
     if (query === "") {
       return axios
         .get(`${API_PATH}products/`)
-        .then(res => dispatch(fetchProductsSuccess(res.data))
-          // to simulate server latency
-          // setTimeout(() => dispatch(fetchProductsSuccess(res.data)), 1000);
-        )
+        .then(res => dispatch(fetchProductsSuccess(res.data)))
         .catch(err => dispatch(fetchProductsFail(err)));
     } else {
       return axios
