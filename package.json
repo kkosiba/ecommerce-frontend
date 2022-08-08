@@ -17,7 +17,7 @@
     "react-dom": "^16.8.4",
     "react-paypal-express-checkout": "^1.0.5",
     "react-redux": "^6.0.1",
-    "react-router-dom": "^4.4.0",
+    "react-router-dom": "^5.3.3",
     "react-router-last-location": "^2.0.0-beta.1",
     "react-scripts": "^2.1.8",
     "react-stripe-checkout": "^2.6.3",
