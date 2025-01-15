@@ -1,0 +1,11 @@
+services:
+  frontend:
+    build: .
+    command: ["npm", "start"]
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - /app/node_modules  # Ensure node_modules are stored inside the container
+    environment:
+      NODE_ENV: development
