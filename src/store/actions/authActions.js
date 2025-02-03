@@ -61,7 +61,7 @@ export const authLogin = (email, password) => {
         password: password
       })
       .then(res => {
-        const { token } = res.data;
+        const token = res.data.access;
         const expirationDate = new Date(new Date().getTime() + 3600 * 1000);
 
         dispatch(authSuccess(token, expirationDate));
@@ -91,7 +91,7 @@ export const authSignup = (
         last_name: last_name
       })
       .then(res => {
-        const token = res.data.token;
+        const token = res.data.access;
         const expirationDate = new Date(new Date().getTime() + 3600 * 1000);
         // automatically log in after successful registration
         dispatch(authSuccess(token, expirationDate));
